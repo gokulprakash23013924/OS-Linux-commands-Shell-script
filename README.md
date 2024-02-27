@@ -42,24 +42,24 @@ s.n. dasgupta
 ### Display the content of the files
 cat < file1
 ## OUTPUT
-
+chanchal singhvi c.k. shukla s.n. dasgupta sumit chakrobarty
 
 
 cat < file2
 ## OUTPUT
-
+anil aggarwal barun sengupta c.k. shukla lalit chowdury s.n. dasgupta
 
 # Comparing Files
 cmp file1 file2
 ## OUTPUT
- 
-comm file1 file2
- ## OUTPUT
+ file1 file2 differ: char1,line1 comm file1 file2
 
+ ## OUTPUT
+anil aggarwal barun sengupta c.k. shukla chanchal singhvi c.k. shukla lalit chowdury s.n. dasgupta
  
 diff file1 file2
 ## OUTPUT
-
+--- file1 +++ file2 @@ -1,4 +1,5 @@ -chanchal singhvi +anil aggarwal +barun sengupta c.k. shukla +lalit chowdury s.n. dasgupta -sumit chakrobarty
 
 #Filters
 
@@ -82,18 +82,15 @@ cat > file22
 
 cut -c1-3 file11
 ## OUTPUT
-
-
-
+Hel Thi
 
 cut -d "|" -f 1 file22
 ## OUTPUT
-
-
+1001 1002 1003
 
 cut -d "|" -f 2 file22
 ## OUTPUT
-
+Ram tom Joe
 
 cat < newfile 
 ```
@@ -107,40 +104,34 @@ hello world
  
 grep Hello newfile 
 ## OUTPUT
-
+Hello world
 
 
 grep hello newfile 
 ## OUTPUT
-
-
+hello world
 
 
 grep -v hello newfile 
 ## OUTPUT
-
-
+Hello world
 
 cat newfile | grep -i "hello"
 ## OUTPUT
-
-
-
+Hello world hello world
 
 cat newfile | grep -i -c "hello"
 ## OUTPUT
-
-
-
+2
 
 grep -R ubuntu /etc
 ## OUTPUT
-
+recursion
 
 
 grep -w -n world newfile   
 ## OUTPUT
-
+1:Hello world 2:hello world
 
 cat < newfile 
 ```
@@ -163,60 +154,59 @@ Linux is best in this World
  ```
 egrep -w 'Hello|hello' newfile 
 ## OUTPUT
-
+Hello world hello world
 
 
 egrep -w '(H|h)ello' newfile 
 ## OUTPUT
-
+Hello world hello world
 
 
 egrep -w '(H|h)ell[a-z]' newfile 
 ## OUTPUT
-
+Hello world hello world
 
 
 
 egrep '(^hello)' newfile 
 ## OUTPUT
-
+hello world
 
 
 egrep '(world$)' newfile 
 ## OUTPUT
-
+Hello world hello world
 
 
 egrep '(World$)' newfile 
 ## OUTPUT
-
+Linux is best in the World
 
 egrep '((W|w)orld$)' newfile 
 ## OUTPUT
-
-
+Hello world hello world Linux is best in this World
 
 egrep '[1-9]' newfile 
 ## OUTPUT
-
+Linux is world number 1
 
 
 egrep 'Linux.*world' newfile 
 ## OUTPUT
-
+Linux is world number 1
 
 egrep 'Linux.*World' newfile 
 ## OUTPUT
-
+Linux is best in this World
 
 egrep l{2} newfile
 ## OUTPUT
-
+Hello world hello world
 
 
 egrep 's{1,2}' newfile
 ## OUTPUT 
-
+Unix is predecessor Linux is best in this World
 
 cat > file23
 ```
@@ -234,76 +224,76 @@ cat > file23
 
 sed -n -e '3p' file23
 ## OUTPUT
-
+1002 | tom | 5000 | Admin
 
 
 sed -n -e '$p' file23
 ## OUTPUT
-
+1001 | Ram | 10000 | HR
 
 
 sed  -e 's/Ram/Sita/' file23
 ## OUTPUT
-
+1001 | Sita | 10000 | HR 1001 | Sita | 10000 | HR 1002 | tom | 5000 | Admin 1003 | Joe | 7000 | Developer 1005 | Sam | 5000 | HR 1004 | Sit | 7000 | Dev 1003 | Joe | 7000 | Developer 1001 | Sita | 10000 | HR
 
 
 sed  -e '2s/Ram/Sita/' file23
 ## OUTPUT
-
+1001 | Ram | 10000 | HR 1001 | Sita | 10000 | HR 1002 | tom | 5000 | Admin 1003 | Joe | 7000 | Developer 1005 | Sam | 5000 | HR 1004 | Sit | 7000 | Dev 1003 | Joe | 7000 | Developer 1001 | Ram | 10000 | HR
 
 
 sed  '/tom/s/5000/6000/' file23
 ## OUTPUT
-
+1001 | Ram | 10000 | HR 1001 | Ram | 10000 | HR 1002 | tom | 6000 | Admin 1003 | Joe | 7000 | Developer 1005 | Sam | 5000 | HR 1004 | Sit | 7000 | Dev 1003 | Joe | 7000 | Developer 1001 | Ram | 10000 | HR
 
 
 sed -n -e '1,5p' file23
 ## OUTPUT
-
+1001 | Ram | 10000 | HR 1001 | Ram | 10000 | HR 1002 | tom | 5000 | Admin 1003 | Joe | 7000 | Developer 1005 | Sam | 5000 | HR
 
 
 sed -n -e '2,/Joe/p' file23
 ## OUTPUT
-
+1001 | Ram | 10000 | HR 1002 | tom | 5000 | Admin 1003 | Joe | 7000 | Develope
 
 
 
 sed -n -e '/tom/,/Joe/p' file23
 ## OUTPUT
-
+1002 | tom | 5000 | Admin 1003 | Joe | 7000 | Developer
 
 
 seq 10 
 ## OUTPUT
-
+1 2 3 4 5 6 7 8 9 10
 
 
 seq 10 | sed -n '4,6p'
 ## OUTPUT
-
+4 5 6
 
 
 seq 10 | sed -n '2,~4p'
 ## OUTPUT
-
+2 3 4
 
 
 seq 3 | sed '2a hello'
 ## OUTPUT
-
+1 2 hello 3
 
 
 seq 2 | sed '2i hello'
 ## OUTPUT
-
+1 hello 2
 
 seq 10 | sed '2,9c hello'
 ## OUTPUT
-
+1 hello 10
 
 sed -n '2,4{s/^/$/;p}' file23
 ## OUTPUT
-
+$1001 | Ram | 10000 | HR $1002 | tom | 5000 | Admin $1003 | Joe | 7000 | Developer
 
 
 sed -n '2,4{s/$/*/;p}' file23
@@ -320,7 +310,7 @@ cat > file21
 ``` 
 sort file21
 ## OUTPUT
-
+1001 | Ram | 10000 | HR 1002 | tom | 5000 | Admin 1003 | Joe | 7000 | Developer 1004 | Sit | 7000 | Dev 1005 | Sam | 5000 | HR
 
 cat > file22
 ```
@@ -333,13 +323,14 @@ cat > file22
 ``` 
 uniq file22
 ## OUTPUT
-
+1001 | Ram | 10000 | HR 1002 | tom | 5000 | Admin 1003 | Joe | 7000 | Developer 1005 | Sam | 5000 | HR 1004 | Sit | 7000 | Dev
 
 
 #Using tr command
 
 cat file23 | tr [:lower:] [:upper:]
  ## OUTPUT
+1001 | RAM | 10000 | HR 1001 | RAM | 10000 | HR 1002 | TOM | 5000 | ADMIN 1003 | JOE | 7000 | DEVELOPER 1005 | SAM | 5000 | HR 1004 | SIT | 7000 | DEV 1003 | JOE | 7000 | DEVELOPER 1001 | RAM | 10000 | HR 
 
 cat < urllist.txt
 ```
@@ -356,18 +347,17 @@ www. mrcet.... com
  ```
 cat urllist.txt | tr -d ' '
  ## OUTPUT
-
+www.yahoo.com www.google.com www.mrcet....com
 
  
 cat urllist.txt | tr -d ' ' | tr -s '.'
 ## OUTPUT
-
-
+www.yahoo.com www.google.com www.mrcet.com
 
 #Backup commands
 tar -cvf backup.tar *
 ## OUTPUT
-
+bench.py file1 file11 file2 file21 file22 file23 hello.c hello.js newfile readme.txt urllist.txt
 
 mkdir backupdir
  
@@ -375,19 +365,18 @@ mv backup.tar backupdir
  
 tar -tvf backup.tar
 ## OUTPUT
-
+-rw-r--r-- user/group 0 2024-02-25 14:30:00 file1.txt drwxr-xr-x user/group 0 2024-02-25 14:30:00 directory1/ -rw-r--r-- user/group 1024 2024-02-25 14:30:00 directory1/file2.txt -rw-r--r-- user/group 2048 2024-02-25 14:30:00 directory1/file3.txt
 
 tar -xvf backup.tar
 ## OUTPUT
-
-gzip backup.tar
+x file1.txt x directory1/ x directory1/file2.txt x directory1/file3.txt gzip backup.tar
 
 ls .gz
 ## OUTPUT
- 
+ backup.tar
 gunzip backup.tar.gz
 ## OUTPUT
-
+backup.tar
  
 # Shell Script
 ```
@@ -397,7 +386,7 @@ echo 'echo Hello World‘; exit 0 >> my-script.sh
 chmod 755 my-script.sh
 ./my-script.sh
 ## OUTPUT
-
+echo Hello World
  
 cat << stop > herecheck.txt
 ```
@@ -409,7 +398,7 @@ stop
 
 cat herecheck.txt
 ## OUTPUT
-
+hello in this world i cant stop for this non stop movement
 
 cat < scriptest.sh 
 ```bash
@@ -447,7 +436,10 @@ chmod 777 scriptest.sh
 ./scriptest.sh 1 2 3
 
 ## OUTPUT
-
+File name is ./scriptest.sh File name is scriptest.sh First arg. is 1 Second arg. is 2 Third arg. is 3 Fourth arg. is The @is123The# is
+You can't use 'macro parameter character #' in math mode
+$#
+The $$ is 124
  
 ls file1
 ## OUTPUT
@@ -464,7 +456,7 @@ abcd
  
 echo $?
  ## OUTPUT
-
+1
 
  
 # mis-using string comparisons
@@ -503,7 +495,7 @@ chmod 755 strcomp.sh
  
 ./strcomp.sh 
 ## OUTPUT
-
+baseball is less than hockey
 
 # check file ownership
 cat < psswdperm.sh 
@@ -530,7 +522,7 @@ fi
  ```
 ./psswdperm.sh
 ## OUTPUT
-
+You are the owner of the /etc/passwd file
 # check if with file location
 cat>ifnested.sh 
 ```bash
@@ -576,7 +568,7 @@ fi
 
 ./ifnested.sh 
 ## OUTPUT
-
+/root The object exists, is it a file? No,/root it is not a file!
 
 
 # using numeric test comparisons
@@ -697,7 +689,7 @@ $ chmod 755 elifcheck.sh
  
 $ ./elifcheck.sh 
 ## OUTPUT
-
+Welcome Ram Please enjoy your visit Welcome Rahim Please enjoy your visit Special testing account gganesh, Do not forget to logout when you're done Sorry, you are not allowed here
 
 # testing compound comparisons
 cat> ifcompound.sh 
@@ -713,7 +705,7 @@ fi
 $ chmod 755 ifcompound.sh
 $ ./ifcompound.sh 
 ## OUTPUT
-
+The file exists and you can write to it
 # using the case command
 cat >casecheck.sh 
 ```bash
@@ -1085,7 +1077,6 @@ else
 fi
 ```
 ## OUTPUT 
-
-
+Enter the number 121 Number is palindrome Enter the number 69 Number is NOT palindrome
 # RESULT:
 The Commands are executed successfully.
